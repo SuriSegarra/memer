@@ -1,4 +1,4 @@
-const chance = require('chance').chance();
+const chance = require('chance').Chance();
 const Meme = require('../lib/models/Meme');
 
 module.exports = async() => {
