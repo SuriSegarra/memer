@@ -11,7 +11,7 @@ describe('memes route', () => {
         image: 'image',
         bottom: 'bottom'
       })
-      .then( res => {
+      .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           top: expect.any(String),
@@ -38,5 +38,18 @@ describe('memes route', () => {
       
       });
   });
+  it('updates a meme by id', async() => {
+    const meme = await getMeme();
   
+    return request(app)
+      .patch(`/api/v1/memes/${meme._id}`)
+      .send({ bottom: 'something' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...meme,
+          bottom: expect.any(String)
+        });
+      });
+  });
+
 });
