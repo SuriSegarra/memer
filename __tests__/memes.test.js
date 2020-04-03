@@ -1,5 +1,4 @@
 const { getMeme, getMemes } = require('../db/data-helpers');
-
 const request = require('supertest');
 const app = require('../lib/app');
 
@@ -20,6 +19,14 @@ describe('memes route', () => {
           bottom: expect.any(String),
           __v: 0
         });
+      });
+  });
+  it('gets a meme by id', async() => {
+    const meme = await getMeme();
+    return request(app)
+      .get(`/api/v1/memes/${meme._id}`)
+      .then(res => {
+        expect(res.body).toEqual(meme);
       });
   });
 });
