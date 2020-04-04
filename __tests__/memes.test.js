@@ -29,6 +29,8 @@ describe('memes route', () => {
         expect(res.body).toEqual(meme);
       });
   });
+
+
   it('get all memes', async() => {
     const memes = await getMemes();
     return request(app)
@@ -43,7 +45,7 @@ describe('memes route', () => {
   
     return request(app)
       .patch(`/api/v1/memes/${meme._id}`)
-      .send({ bottom: 'something' })
+      .send({ bottom: 'bottom' })
       .then(res => {
         expect(res.body).toEqual({
           ...meme,
